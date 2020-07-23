@@ -8,12 +8,16 @@ public class Person : MonoBehaviour
     private bool local;
     private bool independent;
     private bool plannedAhead;
-    private string enclosure;
+    private string surroundings;
     private string activity;
     // TODO
-    // private location 
+    // private location
     // work on mapping bolinas map to the world space and creating your pinpointed location
     private int groupSize;
+    // private Transportation[] transportations
+    // private Communication[] communications
+
+
 
     
     // 
