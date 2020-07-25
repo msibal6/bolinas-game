@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prompt.unity
     guid: 5aefd6bfed1a34c66a2732b7ba0d139c
+  - enabled: 1
+    path: Assets/Scenes/info grab.unity
+    guid: 10cdb3587a3d74208aa02ae55f66a6da
   m_configObjects: {}

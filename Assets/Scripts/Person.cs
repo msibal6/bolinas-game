@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Linq;
 
 public class Person : MonoBehaviour
 {
-     
+    public ToggleGroup toggleGroup;
     private bool local;
     private bool independent;
     private bool plannedAhead;
@@ -17,7 +19,7 @@ public class Person : MonoBehaviour
     // private Transportation[] transportations
     // private Communication[] communications
 
-
+   
 
     
     // 

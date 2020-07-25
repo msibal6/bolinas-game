@@ -22,9 +22,18 @@ public class BolinasTile : MonoBehaviour
 
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        print("colliding with " + collision.gameObject.name);
-        neighbors.Add(collision.gameObject.GetComponent<BolinasTile>());
+        print("colliding with " + collider2D.gameObject.name);
+        neighbors.Add(collider2D.gameObject.GetComponent<BolinasTile>());
     }
+
+    private void OnMouseDown()
+    {
+        print("this is where you live" + gameObject.name);
+        // go to the next round of information grab
+    }
+
 }
