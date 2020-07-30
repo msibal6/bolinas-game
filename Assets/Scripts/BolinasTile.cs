@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BolinasTile : MonoBehaviour
 {
@@ -34,6 +35,10 @@ public class BolinasTile : MonoBehaviour
     {
         print("this is where you live" + gameObject.name);
         // go to the next round of information grab
+        // Create the different map divisions to show
+        // where the person live 
+        GameObject text = GameObject.Find("location question");
+        text.GetComponent<Text>().text = gameObject.name;
     }
 
 }

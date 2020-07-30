@@ -5,6 +5,9 @@ using UnityEngine;
 public class InfoManager : MonoBehaviour
 {
     private int infoStage;
+    public GameObject bolinasMap;
+    public GameObject[] infoPrompts;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +20,20 @@ public class InfoManager : MonoBehaviour
     {
         
     }
+
+    // Changes the questions to the next round 
+    public void NextInfo()
+    {
+        if (infoStage == 0) {
+            bolinasMap.SetActive(false);
+        }
+        infoPrompts[infoStage].SetActive(false);
+
+        infoStage++;
+
+        infoPrompts[infoStage].SetActive(true);
+    }
+
 
     
 
