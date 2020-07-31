@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BolinasTile : MonoBehaviour
 {
@@ -39,6 +40,21 @@ public class BolinasTile : MonoBehaviour
         // where the person live 
         GameObject text = GameObject.Find("location question");
         text.GetComponent<Text>().text = gameObject.name;
+
+        if (SceneManager.GetActiveScene().name == "info grab")
+        {
+            InfoManager infoManager = FindObjectOfType<InfoManager>();
+            if (infoManager.person == null)
+            {
+                infoManager.person = new Person();
+
+
+                    
+            }
+            infoManager.person.bolinasTile = gameObject.GetComponent<BolinasTile>();
+            print("adding the person");
+        }
+
     }
 
 }
