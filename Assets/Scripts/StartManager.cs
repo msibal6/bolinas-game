@@ -21,7 +21,7 @@ public class StartManager : MonoBehaviour
 
     public void NextStage()
     {
-        print("changing ot the next stage in the game");
+        //print("changing ot the next stage in the game");
         GameManager.instance.NextStage();
     }
 }

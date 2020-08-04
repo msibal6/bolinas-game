@@ -10,18 +10,29 @@ public class Person
     public bool plannedAhead;
     public string surroundings;
     public string activity;
-    public BolinasTile bolinasTile;
+    public string bolinasTile;
     // work on mapping bolinas map to the world space and creating your pinpointed location
-    private int groupSize;
+    public int groupSize;
+    public string vehicle;
+
     // private Transportation[] transportations
     // private Communication[] communications
 
-   
-
-    
     public Person()
     {
        
+    }
+
+    public Person(Person person) {
+    bolinasTile = person.bolinasTile;
+        local = person.local;
+        independent = person.independent;
+        plannedAhead = person.plannedAhead;
+        surroundings = person.surroundings;
+        activity = person.activity;
+        bolinasTile = person.bolinasTile;
+        groupSize = person.groupSize;
+        vehicle = person.vehicle;
     }
 
 

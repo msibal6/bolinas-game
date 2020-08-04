@@ -28,7 +28,7 @@ public class BolinasTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        print("colliding with " + collider2D.gameObject.name);
+        //print("colliding with " + collider2D.gameObject.name);
         neighbors.Add(collider2D.gameObject.GetComponent<BolinasTile>());
     }
 
@@ -41,18 +41,12 @@ public class BolinasTile : MonoBehaviour
         GameObject text = GameObject.Find("location question");
         text.GetComponent<Text>().text = gameObject.name;
 
-        if (SceneManager.GetActiveScene().name == "info grab")
-        {
+        if (SceneManager.GetActiveScene().name == "info grab") {
             InfoManager infoManager = FindObjectOfType<InfoManager>();
-            if (infoManager.person == null)
-            {
-                infoManager.person = new Person();
-
-
-                    
-            }
-            infoManager.person.bolinasTile = gameObject.GetComponent<BolinasTile>();
-            print("adding the person");
+            infoManager.person = new Person {
+                bolinasTile = gameObject.GetComponent<BolinasTile>().name
+            };
+            print(infoManager.person.bolinasTile);
         }
 
     }

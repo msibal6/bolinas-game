@@ -7,16 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int currentStage = 0;
-    private Person person;
+    public Person person;
    
 
     // Update is called once per frame
     void Update()
     {
-     if (Input.GetKeyDown(KeyCode.Escape))
-        {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             print("game is paused");
-        }   
+        }
     }
 
     private void Awake()
