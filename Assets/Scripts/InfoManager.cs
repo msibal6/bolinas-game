@@ -41,8 +41,8 @@ public class InfoManager : MonoBehaviour {
 
     // Changes the questions to the next round
     // or switches to the next scene if we are done getting all info
-    //
     public void NextInfo() {
+
         if (infoStage == 0) {
             bolinasMap.SetActive(false);
             person.vehicle = vehicleType.captionText.text;
@@ -58,8 +58,8 @@ public class InfoManager : MonoBehaviour {
             GameManager.instance.NextStage();
 
         } else { 
-        infoPrompts[infoStage].SetActive(true);
-        nextButton.interactable = false;
+            infoPrompts[infoStage].SetActive(true);
+            nextButton.interactable = false;
         }
     }
 

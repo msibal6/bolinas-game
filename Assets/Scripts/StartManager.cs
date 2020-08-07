@@ -14,11 +14,6 @@ public class StartManager : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void NextStage()
     {
         //print("changing ot the next stage in the game");

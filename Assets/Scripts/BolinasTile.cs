@@ -7,40 +7,29 @@ using UnityEngine.SceneManagement;
 public class BolinasTile : MonoBehaviour
 {
     enum TrafficStatus { Light, Medium, Heavy};
-    public List<BolinasTile> neighbors;
+    public BolinasTile[] neighbors;
+    private int offset;
     private TrafficStatus trafficStatus;
     private bool onFire;
     private bool blocked;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void SetOffset(int newOffset) {
+        offset = newOffset;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        
+    public int GetOffset() {
+        return offset;
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collider2D)
-    {
-        //print("colliding with " + collider2D.gameObject.name);
-        neighbors.Add(collider2D.gameObject.GetComponent<BolinasTile>());
-    }
+     
 
     private void OnMouseDown()
     {
         print("this is where you live" + gameObject.name);
-        // go to the next round of information grab
-        // Create the different map divisions to show
-        // where the person live 
         GameObject text = GameObject.Find("location question");
         text.GetComponent<Text>().text = gameObject.name;
 
+        // location grab of where the player is
+        // TODO add location grab of where the rest of their evacutation party is
         if (SceneManager.GetActiveScene().name == "info grab") {
             InfoManager infoManager = FindObjectOfType<InfoManager>();
             infoManager.person = new Person {
@@ -48,7 +37,6 @@ public class BolinasTile : MonoBehaviour
             };
             print(infoManager.person.bolinasTile);
         }
-
     }
 
 }
