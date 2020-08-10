@@ -11,23 +11,18 @@ public class GameManager : MonoBehaviour
    
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             print("game is paused");
         }
     }
 
-    private void Awake()
-    {
+    private void Awake() {
         // Maintain the same instance across the game
-        if (instance == null)
-        {
+        if (instance == null) {
             DontDestroyOnLoad(gameObject);
             instance = this;
-        }
-        else
-        {
+        } else {
             Destroy(gameObject);
         }
         NextStage();        
@@ -41,11 +36,9 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
+        person = null;
         currentStage = 1;
         SceneManager.LoadScene(currentStage);
-
-        // reset the person
-        // and we are good to go 
     }
 
     

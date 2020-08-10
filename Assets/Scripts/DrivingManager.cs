@@ -3,12 +3,14 @@ using UnityEngine.UI;
 public class DrivingManager : MonoBehaviour
 {
 
+    public Camera mapCamera;
     public Button straight;
     public Button right;
     public Button back;
     public Button left;
 
     public GameObject map;
+    public Fire fire;
 
     public Button[] availableTurns;
 
@@ -23,7 +25,7 @@ public class DrivingManager : MonoBehaviour
     void Start() {
         person = GameManager.instance.person;
         bolinasTiles = map.GetComponentsInChildren<BolinasTile>();
-        print(bolinasTiles.Length);
+        //print(bolinasTiles.Length);
         foreach (BolinasTile tile in bolinasTiles) {
             if (tile.name == person.bolinasTile) {
                 currentLocation = tile;
@@ -41,8 +43,8 @@ public class DrivingManager : MonoBehaviour
     }
 
     public void ShowTurns(BolinasTile origin, BolinasTile currentLocation) {
-        print("coming from" + origin.name);
-        print("now in " + currentLocation.name);
+        //print("coming from" + origin.name);
+        //print("now in " + currentLocation.name);
         int originIndex = 0;
 
         for (int i = 0; i < currentLocation.neighbors.Length; i++) {
@@ -55,7 +57,7 @@ public class DrivingManager : MonoBehaviour
         if ((Turn)originIndex == Turn.straight) {
             UpdateButtons(2);
         } else if ((Turn)originIndex == Turn.right) {
-            print("oneth");
+            //print("oneth");
             UpdateButtons(1);
         } else if ((Turn)originIndex == Turn.back) {
             UpdateButtons(0);
@@ -78,17 +80,30 @@ public class DrivingManager : MonoBehaviour
             }
         }
         currentLocation.SetOffset(offset);
+        mapCamera.PanTo(currentLocation.transform.position);
     }
 
     public void GoTo(int neighbor) {
+
         BolinasTile oldLocation = currentLocation;
         int chosenNeighbor = neighbor;
-        chosenNeighbor -= oldLocation.GetOffset();
+        chosenNeighbor -= oldLocation.offset;
         if (chosenNeighbor < 0) {
             chosenNeighbor += oldLocation.neighbors.Length;
         }
+
+        // TODO flash the on fire warning
+        if (oldLocation.neighbors[chosenNeighbor].DangerFromFire()) {
+            print("new location on fire");
+            //print(oldLocation.neighbors[chosenNeighbor].name);
+        }
+
+        // can no longer go to this new location
         currentLocation = oldLocation.neighbors[chosenNeighbor];
+        fire.Spread();
         ShowTurns(oldLocation, currentLocation);
+
+       
     }
 }
 

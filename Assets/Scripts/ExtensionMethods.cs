@@ -13,4 +13,12 @@ public static class ExtensionMethods
         }
         return true;
     }
+
+    public static void PanTo(this Camera camera, Vector3 newPos) {
+        Debug.Log("changing camera");
+        //camera.transform.position = newPos;
+        //Debug.Log("changing camera again");
+        Vector3 vector3 = new Vector3(newPos.x, newPos.y, -10f);
+        camera.transform.position = vector3;
+    }
 }

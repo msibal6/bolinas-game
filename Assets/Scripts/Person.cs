@@ -21,7 +21,7 @@ public class Person
     }
 
     public Person(Person person) {
-    bolinasTile = person.bolinasTile;
+        bolinasTile = person.bolinasTile;
         local = person.local;
         independent = person.independent;
         plannedAhead = person.plannedAhead;
@@ -30,20 +30,5 @@ public class Person
         bolinasTile = person.bolinasTile;
         groupSize = person.groupSize;
         vehicle = person.vehicle;
-    }
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

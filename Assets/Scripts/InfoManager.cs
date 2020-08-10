@@ -53,7 +53,7 @@ public class InfoManager : MonoBehaviour {
         infoPrompts[infoStage].SetActive(false);
         infoStage++;
         if (infoStage >= infoPrompts.Length) {
-            print("next Stage");
+            //print("next Stage");
             GameManager.instance.person = new Person(person);
             GameManager.instance.NextStage();
 
