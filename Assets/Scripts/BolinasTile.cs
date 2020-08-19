@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class BolinasTile : MonoBehaviour
 {
     enum TrafficStatus { Light, Medium, Heavy};
+    public string terrain;
     public BolinasTile[] neighbors;
     public int offset { get; private set; }
     private TrafficStatus trafficStatus;
@@ -35,7 +36,8 @@ public class BolinasTile : MonoBehaviour
 
 
     private void OnMouseDown() {
-        //print("this is where you live" + gameObject.name);
+        // TODO 
+        // Place holder for highlight the tile where they live 
         GameObject text = GameObject.Find("location question");
         text.GetComponent<Text>().text = gameObject.name;
         // location grab of where the player is

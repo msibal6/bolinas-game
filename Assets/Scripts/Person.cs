@@ -5,6 +5,7 @@ public class Person
     public bool local;
     public bool independent;
     public bool plannedAhead;
+    public bool evacReady;
     public string surroundings;
     public string activity;
     public string bolinasTile;
