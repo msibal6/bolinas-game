@@ -8,11 +8,38 @@ public class BolinasTile : MonoBehaviour
 {
     enum TrafficStatus { Light, Medium, Heavy};
     public string terrain;
+    public bool autoPopulateNeighbors = true;
     public BolinasTile[] neighbors;
     public int offset { get; private set; }
     private TrafficStatus trafficStatus;
     public bool onFire { get; private set;}
     private bool blocked;
+
+
+    private void Start() {
+        if (autoPopulateNeighbors) {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, 5);
+            AssignNeighbor(hit, 0);
+            hit = Physics2D.Raycast(transform.position, transform.up, 5);
+            AssignNeighbor(hit, 1);
+            hit = Physics2D.Raycast(transform.position, transform.right, 5);
+            AssignNeighbor(hit, 2);
+            hit = Physics2D.Raycast(transform.position, -transform.up, 5);
+            AssignNeighbor(hit, 3);
+        }
+    }
+
+    private void AssignNeighbor(RaycastHit2D hit, int neighbor) {
+        if (hit.collider == null) {
+            ;
+        } else {
+            neighbors[neighbor] = hit.collider.gameObject.GetComponentInChildren<BolinasTile>();
+        }
+    }
+    private void Update() {
+        Debug.DrawRay(transform.position, -transform.right);
+        //print(transform.right);
+    }
 
     public void SetOffset(int newOffset) {
         offset = newOffset;
@@ -49,6 +76,12 @@ public class BolinasTile : MonoBehaviour
             };
             print(infoManager.person.bolinasTile);
         }
+    }
+
+    void OnDrawGizmos() {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        //Gizmos.DrawLine(transform.position, transform.up);
     }
 
 }

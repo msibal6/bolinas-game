@@ -7,7 +7,7 @@ public class DrivingManager : MonoBehaviour
     public Camera mapCamera;
     public GameObject map;
     public Fire fire;
-    public Text infoSplsh;
+    public Text infoSplash;
     public Button[] availableTurns;
     private BolinasTile[] bolinasTiles;
     private Person person;
@@ -33,6 +33,8 @@ public class DrivingManager : MonoBehaviour
         for (int i = 0; i < currentLocation.neighbors.Length; i++) {
             if (turned == false && currentLocation.neighbors[i] != null) {
                 // TODO rotate to face it
+                // This turns to the first available which might not be the straight
+                // 
                 mapCamera.gameObject.RotateTo(currentLocation.transform.position,
                     currentLocation.neighbors[i].transform.position);
                 turned = true;
@@ -100,6 +102,7 @@ public class DrivingManager : MonoBehaviour
             //print("new location on fire");
             //print(oldLocation.neighbors[chosenNeighbor].name);
             StartCoroutine("ShowFireWarning");
+            print("fire");
         } else {
             currentLocation = oldLocation.neighbors[chosenNeighbor];
             fire.Spread();
@@ -108,9 +111,9 @@ public class DrivingManager : MonoBehaviour
     }
 
     public IEnumerator ShowFireWarning() {
-        infoSplsh.gameObject.SetActive(true); 
+        infoSplash.gameObject.SetActive(true); 
         yield return new WaitForSecondsRealtime(.5f);
-        infoSplsh.gameObject.SetActive(false);
+        infoSplash.gameObject.SetActive(false);
     }
      
 }

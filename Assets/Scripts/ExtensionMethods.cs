@@ -31,15 +31,16 @@ public static class ExtensionMethods
         float localAngle = Mathf.Acos(xp / Mathf.Sqrt(xp * xp + yp * yp));
         localAngle = localAngle * 180 / Mathf.PI;
         if (xp <= 0 && yp <= 0) {
-            localAngle = 180 + localAngle;
+            localAngle = 270 -  localAngle;
         } else if (xp > 0 && yp <= 0) {
-            localAngle = -localAngle;
+            localAngle = -localAngle - 90;
 
         } else if (xp > 0 && yp > 0) {
-
+            localAngle -= 90;
         } else if (xp <= 0 && yp > 0) {
-            localAngle = 180 - localAngle;
+            localAngle = 90 + localAngle - 180;
         }
+        Debug.Log(localAngle);
         gameObject.transform.eulerAngles = new Vector3(0, 0, localAngle);
     }
 }
