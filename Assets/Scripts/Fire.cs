@@ -13,6 +13,7 @@ public class Fire : MonoBehaviour {
                 if (neighbor != null && !tilesOnFire.Contains(neighbor) && spreads) {
                     //neighbor.SetFire();
                     //tilesOnFire.Add(neighbor);
+                    print("fire spreads");
                 }
             }
         }

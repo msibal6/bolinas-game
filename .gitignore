@@ -61,4 +61,6 @@ crashlytics-build.properties
 # Mac specific
 Assets/Resources/.DS_Store
 Assets/Scripts/.DS_Store
+./.DS_Store
+
 

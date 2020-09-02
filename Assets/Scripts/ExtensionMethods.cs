@@ -40,7 +40,7 @@ public static class ExtensionMethods
         } else if (xp <= 0 && yp > 0) {
             localAngle = 90 + localAngle - 180;
         }
-        Debug.Log(localAngle);
+        //Debug.Log(localAngle);
         gameObject.transform.eulerAngles = new Vector3(0, 0, localAngle);
     }
 }

@@ -46,8 +46,8 @@ public class DrivingManager : MonoBehaviour
     }
     
     public void ShowTurns(BolinasTile origin, BolinasTile currentLocation) {
-        print("coming from" + origin.name);
-        print("now in " + currentLocation.name);
+        //print("coming from" + origin.name);
+        //print("now in " + currentLocation.name);
         int originIndex = 0;
 
         for (int i = 0; i < currentLocation.neighbors.Length; i++) {
@@ -104,11 +104,25 @@ public class DrivingManager : MonoBehaviour
             StartCoroutine("ShowFireWarning");
             print("fire");
         } else {
+            // TODO the fire spreads more depending on
+            // Traffic conditions of the tile
+            // transportation of the person
             currentLocation = oldLocation.neighbors[chosenNeighbor];
-            fire.Spread();
+            SpreadFire();
             ShowTurns(oldLocation, currentLocation);
         }
     }
+
+
+    private void SpreadFire () {
+        if (person.transportation == "On Foot") {
+            for (int i = 0; i < 2; i++) {
+                fire.Spread();
+            }
+        } else {
+            fire.Spread();
+        }
+     }
 
     public IEnumerator ShowFireWarning() {
         infoSplash.gameObject.SetActive(true); 

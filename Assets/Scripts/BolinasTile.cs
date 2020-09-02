@@ -6,26 +6,45 @@ using UnityEngine.SceneManagement;
 
 public class BolinasTile : MonoBehaviour
 {
-    enum TrafficStatus { Light, Medium, Heavy};
+    public enum TrafficStatus { Light, Medium, Heavy};
     public string terrain;
     public bool autoPopulateNeighbors = true;
+    public bool ignore0 = false;
+    public bool ignore1 = false;
+    public bool ignore2 = false;
+    public bool ignore3 = false;
     public BolinasTile[] neighbors;
     public int offset { get; private set; }
-    private TrafficStatus trafficStatus;
+    public TrafficStatus trafficStatus;
     public bool onFire { get; private set;}
     private bool blocked;
 
+    private Vector2 mousePosition;
+    private float deltaX, deltaY;
 
-    private void Start() {
+
+
+    private void Awake() {
         if (autoPopulateNeighbors) {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, 5);
-            AssignNeighbor(hit, 0);
-            hit = Physics2D.Raycast(transform.position, transform.up, 5);
-            AssignNeighbor(hit, 1);
-            hit = Physics2D.Raycast(transform.position, transform.right, 5);
-            AssignNeighbor(hit, 2);
-            hit = Physics2D.Raycast(transform.position, -transform.up, 5);
-            AssignNeighbor(hit, 3);
+            if (!ignore0) {
+                AssignNeighbor(hit, 0);
+            }
+
+            if (!ignore1) {
+                hit = Physics2D.Raycast(transform.position, transform.up, 5);
+                AssignNeighbor(hit, 1);
+            }
+
+            if (!ignore2) {
+                hit = Physics2D.Raycast(transform.position, transform.right, 5);
+                AssignNeighbor(hit, 2);
+            }
+
+            if (!ignore3) {
+                hit = Physics2D.Raycast(transform.position, -transform.up, 5);
+                AssignNeighbor(hit, 3);
+            }
         }
     }
 
@@ -36,6 +55,7 @@ public class BolinasTile : MonoBehaviour
             neighbors[neighbor] = hit.collider.gameObject.GetComponentInChildren<BolinasTile>();
         }
     }
+
     private void Update() {
         Debug.DrawRay(transform.position, -transform.right);
         //print(transform.right);
@@ -63,7 +83,10 @@ public class BolinasTile : MonoBehaviour
 
 
     private void OnMouseDown() {
-        // TODO 
+
+        deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.parent.transform.position.x;
+        deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.parent.transform.position.y;
+
         // Place holder for highlight the tile where they live 
         GameObject text = GameObject.Find("location question");
         text.GetComponent<Text>().text = gameObject.name;
@@ -78,10 +101,13 @@ public class BolinasTile : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos() {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        //Gizmos.DrawLine(transform.position, transform.up);
+    private void OnMouseDrag() {
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.parent.transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
+    }
+
+    private void OnMouseUp() {
+        
     }
 
 }

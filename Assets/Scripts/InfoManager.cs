@@ -10,7 +10,7 @@ public class InfoManager : MonoBehaviour {
     public MuggleGroup independent;
     public MuggleGroup plannedAhead;
     public InputField groupSize;
-    public Dropdown vehicleType;
+    public Dropdown transportation;
     public string cheese;
     public GameObject[] infoPrompts;
 
@@ -19,8 +19,8 @@ public class InfoManager : MonoBehaviour {
             GetGroupSize(groupSize.text);
             }
         );
-        vehicleType.onValueChanged.AddListener(delegate {
-            person.vehicle = vehicleType.captionText.text;
+        transportation.onValueChanged.AddListener(delegate {
+            person.transportation = transportation.captionText.text;
             }
         );
     }
@@ -45,9 +45,9 @@ public class InfoManager : MonoBehaviour {
 
         if (infoStage == 0) {
             bolinasMap.SetActive(false);
-            person.vehicle = vehicleType.captionText.text;
+            person.transportation = transportation.captionText.text;
         } else if (infoStage == 1) {
-            person.vehicle = vehicleType.captionText.text;
+            person.transportation = transportation.captionText.text;
         }
 
         infoPrompts[infoStage].SetActive(false);

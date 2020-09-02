@@ -11,7 +11,7 @@ public class Person
     public string bolinasTile;
     // work on mapping bolinas map to the world space and creating your pinpointed location
     public int groupSize;
-    public string vehicle;
+    public string transportation;
 
     // private Transportation[] transportations
     // private Communication[] communications
@@ -30,6 +30,6 @@ public class Person
         activity = person.activity;
         bolinasTile = person.bolinasTile;
         groupSize = person.groupSize;
-        vehicle = person.vehicle;
+        transportation = person.transportation;
     }
 }
