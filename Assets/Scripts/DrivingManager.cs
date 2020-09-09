@@ -20,6 +20,7 @@ public class DrivingManager : MonoBehaviour
     void Start() {
         person = GameManager.instance.person;
         bolinasTiles = map.GetComponentsInChildren<BolinasTile>();
+
         foreach (BolinasTile tile in bolinasTiles) {
             if (tile.name == person.bolinasTile) {
                 currentLocation = tile;
@@ -30,21 +31,21 @@ public class DrivingManager : MonoBehaviour
         // start the first turn section
         bool turned = false;
         mapCamera.PanTo(currentLocation.transform.position);
+
         for (int i = 0; i < currentLocation.neighbors.Length; i++) {
+
             if (turned == false && currentLocation.neighbors[i] != null) {
-                // TODO rotate to face it
-                // This turns to the first available which might not be the straight
-                // 
                 mapCamera.gameObject.RotateTo(currentLocation.transform.position,
                     currentLocation.neighbors[i].transform.position);
                 turned = true;
             }
+
             if (currentLocation.neighbors[i] == null) {
                 availableTurns[i].interactable = false;
             }
         }
     }
-    
+
     public void ShowTurns(BolinasTile origin, BolinasTile currentLocation) {
         //print("coming from" + origin.name);
         //print("now in " + currentLocation.name);
@@ -73,11 +74,14 @@ public class DrivingManager : MonoBehaviour
     }
 
     private void UpdateButtons(int offset) {
+
         for (int i = 0; i < currentLocation.neighbors.Length; i++) {
             int buttonIndex = i + offset;
+
             if (buttonIndex >= currentLocation.neighbors.Length) {
                 buttonIndex -= currentLocation.neighbors.Length;
             }
+
             if (currentLocation.neighbors[i] != null) {
                 availableTurns[buttonIndex].interactable = true;
             } else {
@@ -86,14 +90,13 @@ public class DrivingManager : MonoBehaviour
         }
         currentLocation.SetOffset(offset);
         mapCamera.PanTo(currentLocation.transform.position);
-        
     }
 
     public void GoTo(int neighbor) {
-
         BolinasTile oldLocation = currentLocation;
         int chosenNeighbor = neighbor;
         chosenNeighbor -= oldLocation.offset;
+
         if (chosenNeighbor < 0) {
             chosenNeighbor += oldLocation.neighbors.Length;
         }
@@ -113,9 +116,11 @@ public class DrivingManager : MonoBehaviour
         }
     }
 
-
+    // // TODO Different fire behaviors to simulate different travel speed
     private void SpreadFire () {
+
         if (person.transportation == "On Foot") {
+
             for (int i = 0; i < 2; i++) {
                 fire.Spread();
             }

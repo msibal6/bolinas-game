@@ -11,20 +11,23 @@ public class MuggleGroup : MonoBehaviour
     public InfoManager infoManager;
     public string personInfoField;
 
-    // Start is called before the first frame update
+    // My Toggle Group class to easily read which toggle was on in toggle group
     void Start() {
         personInfoField = gameObject.name;
+
         foreach (Toggle toggle in toggles) {
             toggle.onValueChanged.AddListener(delegate { UpdateToggles(toggle); } );
             StartToggle(toggle);
         }
     }
-
-    
+   
     public void UpdateToggles(Toggle changedToggle) {
+
         if (changedToggle.isOn) {
             activeToggle = changedToggle;
+
             foreach (Toggle toggle in toggles) {
+
                 if (toggle != activeToggle) {
                     toggle.isOn = false;    
                 } else {
@@ -37,6 +40,7 @@ public class MuggleGroup : MonoBehaviour
     }
 
     private void StartToggle(Toggle toggle) {
+
         if (toggle.isOn && activeToggle == null) {
             activeToggle = toggle;
             infoManager.SendMessage("UpdateMuggle", personInfoField);

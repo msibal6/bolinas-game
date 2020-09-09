@@ -19,6 +19,7 @@ public static class ExtensionMethods
         camera.transform.position = new Vector3(newPos.x, newPos.y, -10f);
     }
 
+    // Used to rotate Minimap camera toward direction player is going
     public static void RotateTo(this GameObject gameObject, Vector3 oldPos, Vector3 newPos) {
         float x1 = oldPos.x;
         float y1 = oldPos.y;
@@ -40,7 +41,6 @@ public static class ExtensionMethods
         } else if (xp <= 0 && yp > 0) {
             localAngle = 90 + localAngle - 180;
         }
-        //Debug.Log(localAngle);
         gameObject.transform.eulerAngles = new Vector3(0, 0, localAngle);
     }
 }

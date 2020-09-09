@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// TODO  This class would have been used to monitor the fire and see if the player can still progress to the highway
+
 public class FireTracker : MonoBehaviour
 {
     public BolinasTile[] mainRoad;

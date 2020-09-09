@@ -25,6 +25,9 @@ public class BolinasTile : MonoBehaviour
 
 
     private void Awake() {
+
+        // Looking for the neighbors
+        // TODO no longer need autoPopulateNeighbors as check 
         if (autoPopulateNeighbors) {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, 5);
             if (!ignore0) {
@@ -56,11 +59,9 @@ public class BolinasTile : MonoBehaviour
         }
     }
 
-    private void Update() {
-        Debug.DrawRay(transform.position, -transform.right);
-        //print(transform.right);
-    }
-
+    // Offset was used to calculate  where the player was looking from
+    // in order to toggle the correct direction buttons
+    // and determine which neighbor player wanted to drive to
     public void SetOffset(int newOffset) {
         offset = newOffset;
     }
@@ -105,9 +106,4 @@ public class BolinasTile : MonoBehaviour
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.parent.transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
     }
-
-    private void OnMouseUp() {
-        
-    }
-
 }

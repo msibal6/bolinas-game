@@ -28,6 +28,7 @@ public class InfoManager : MonoBehaviour {
     private void Update() {
         switch (infoStage) {
             case (0):
+                // Must interact with the UI to move to next selection 
                 if (person == null) {
                     nextButton.interactable = false;
                 } else {
@@ -49,11 +50,10 @@ public class InfoManager : MonoBehaviour {
         } else if (infoStage == 1) {
             person.transportation = transportation.captionText.text;
         }
-
         infoPrompts[infoStage].SetActive(false);
         infoStage++;
+
         if (infoStage >= infoPrompts.Length) {
-            //print("next Stage");
             GameManager.instance.person = new Person(person);
             GameManager.instance.NextStage();
 
@@ -71,7 +71,7 @@ public class InfoManager : MonoBehaviour {
         }
     }
 
-    // Updates the valuess of the changing muggle fields
+    // Updates the values of the changing muggle fields
     public void UpdateMuggle(string field) {
         switch (field) {
             case ("local"):

@@ -13,6 +13,7 @@ public class Person
     public int groupSize;
     public string transportation;
 
+    // TODO 
     // private Transportation[] transportations
     // private Communication[] communications
 
